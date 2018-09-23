@@ -1,6 +1,0 @@
-framework module Pods_DoggoStylo2_0 {
-  umbrella header "Pods-DoggoStylo2.0-umbrella.h"
-
-  export *
-  module * { export * }
-}
