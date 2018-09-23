@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		414743112157E79000028D18 /* DoggoStyloCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414743102157E79000028D18 /* DoggoStyloCollectionController.swift */; };
+		414743132157EA7800028D18 /* DoggoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414743122157EA7800028D18 /* DoggoCollectionCell.swift */; };
 		41A9CC6A2157B39200265D46 /* DoggoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A9CC692157B39200265D46 /* DoggoFetcher.swift */; };
 		41CF83CF21579A4B007C36ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CF83CE21579A4B007C36ED /* AppDelegate.swift */; };
 		41CF83D421579A4B007C36ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CF83D221579A4B007C36ED /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		2A0FC9209F3488DBE38FBBB5 /* Pods-DoggoStylo2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoggoStylo2.0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoggoStylo2.0/Pods-DoggoStylo2.0.debug.xcconfig"; sourceTree = "<group>"; };
+		414743102157E79000028D18 /* DoggoStyloCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoggoStyloCollectionController.swift; sourceTree = "<group>"; };
+		414743122157EA7800028D18 /* DoggoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoggoCollectionCell.swift; sourceTree = "<group>"; };
 		41A9CC692157B39200265D46 /* DoggoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoggoFetcher.swift; sourceTree = "<group>"; };
 		41CF83CB21579A4B007C36ED /* DoggoStylo2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoggoStylo2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CF83CE21579A4B007C36ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,9 +80,11 @@
 			children = (
 				41CF83CE21579A4B007C36ED /* AppDelegate.swift */,
 				41CF83E021579C49007C36ED /* DoggoStyloNavigationController.swift */,
+				414743102157E79000028D18 /* DoggoStyloCollectionController.swift */,
 				41CF83E221579C75007C36ED /* DoggoStyloTableController.swift */,
 				41A9CC692157B39200265D46 /* DoggoFetcher.swift */,
 				41CF83D221579A4B007C36ED /* Main.storyboard */,
+				414743122157EA7800028D18 /* DoggoCollectionCell.swift */,
 				41CF83D521579A4F007C36ED /* Assets.xcassets */,
 				41CF83D721579A4F007C36ED /* LaunchScreen.storyboard */,
 				41CF83DA21579A4F007C36ED /* Info.plist */,
@@ -208,7 +214,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				414743132157EA7800028D18 /* DoggoCollectionCell.swift in Sources */,
 				41CF83E321579C75007C36ED /* DoggoStyloTableController.swift in Sources */,
+				414743112157E79000028D18 /* DoggoStyloCollectionController.swift in Sources */,
 				41CF83E121579C49007C36ED /* DoggoStyloNavigationController.swift in Sources */,
 				41A9CC6A2157B39200265D46 /* DoggoFetcher.swift in Sources */,
 				41CF83CF21579A4B007C36ED /* AppDelegate.swift in Sources */,

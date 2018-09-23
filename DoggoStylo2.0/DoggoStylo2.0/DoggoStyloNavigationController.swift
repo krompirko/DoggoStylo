@@ -14,24 +14,38 @@ class DoggoStyloNavigationController: UINavigationController {
     struct SegueIdentifiers {
         static var BreedsToSubBreeds = "ShowSubBreeds"
         static var BreedsToImageGrid = "ShowBreedImages"
+        static var SubBreedsToImageGrid = "ShowSubBreedImages"
     }
     
     struct SceneTitles {
         static var BreedsTitle = "Breeds"
         static var SubBreedsTitle = "Subspecies"
-        static var ImageGridTitme = "Images"
+        static var ImageGridTitle = "Images"
     }
 
     // MARK:- Initialization
     override func awakeFromNib() {
         super.awakeFromNib()
         DoggoFetcher.Initialize(callWhenCompleted: doggoFetcherInitialized)
+        DoggoFetcher.completedImageLoading = imagesLoaded
     }
     
     func doggoFetcherInitialized() {
         displayContentState = .DisplayBreeds
         if let tableViewController = viewControllers[0] as? DoggoStyloTableController {
             initBreedTableViewController(breedTableController: tableViewController)
+        }
+    }
+    
+    func imagesForBreedFetched() {
+        DoggoFetcher.fetchRandomImagesFromURLArray(count: 10)
+    }
+    
+    func imagesLoaded() {
+
+        if let collectionViewController = viewControllers[viewControllers.count - 1] as? DoggoStyloCollectionController {
+            initGridImageCollectionView(imageGridCollectionController: collectionViewController)
+            collectionViewController.collectionView?.reloadData()
         }
     }
     
@@ -58,7 +72,9 @@ class DoggoStyloNavigationController: UINavigationController {
                 
             } else  {
                 // Go to display image grid.
+                DoggoFetcher.selectedSubBreed = nil
                 tableViewController.performSegue(withIdentifier: SegueIdentifiers.BreedsToImageGrid, sender: tableViewController)
+                DoggoFetcher.fetchImageURLArray(fetchCompletedCallback: imagesForBreedFetched)
                 displayContentState = .DisplayImageGrid
             }
         }
@@ -73,7 +89,20 @@ class DoggoStyloNavigationController: UINavigationController {
     }
     
     func subBreedSelectedCallback(subBreed: String) {
-        
+         DoggoFetcher.selectedSubBreed = subBreed
+        if let tableViewController = viewControllers[1] as? DoggoStyloTableController {
+            // Go to display image grid - subBreeds.
+            DoggoFetcher.fetchImageURLArray(fetchCompletedCallback: imagesForBreedFetched)
+            displayContentState = .DisplayImageGrid
+            tableViewController.performSegue(withIdentifier: SegueIdentifiers.SubBreedsToImageGrid, sender: tableViewController)
+
+        }
+    }
+    
+    // Grid collection view.
+    func initGridImageCollectionView(imageGridCollectionController: DoggoStyloCollectionController) {
+        imageGridCollectionController.displayArray = DoggoFetcher.imageArray
+        imageGridCollectionController.title = SceneTitles.ImageGridTitle
     }
     
     // MARK:- States
@@ -94,7 +123,10 @@ class DoggoStyloNavigationController: UINavigationController {
             if let destinationController = segue.destination as? DoggoStyloTableController {
                 initSubBreedTableViewController(subBreedTableController: destinationController)
             }
-//        case .DisplayImageGrid:
+        case .DisplayImageGrid:
+            if let destinationController = segue.destination as? DoggoStyloCollectionController {
+                initGridImageCollectionView(imageGridCollectionController: destinationController)
+            }
         default:
             break
         }
