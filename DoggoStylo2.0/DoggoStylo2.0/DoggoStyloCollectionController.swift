@@ -8,6 +8,7 @@
 
 import UIKit
 import GSImageViewerController
+import DBDebugToolkit
 
 private let reuseIdentifier = "DoggoCollectionCell"
 
@@ -40,7 +41,9 @@ class DoggoStyloCollectionController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let dispArray = displayArray {
-            return dispArray.count
+            let imageNumber = DBDebugToolkit.customVariable(withName: "imageCount")
+            let num = (imageNumber?.value as? Int) ?? dispArray.count
+            return num
         }
         return 0
     }

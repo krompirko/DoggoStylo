@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DBDebugToolkit
 
 class DoggoStyloNavigationController: UINavigationController {
     
@@ -38,7 +39,9 @@ class DoggoStyloNavigationController: UINavigationController {
     }
     
     func imagesForBreedFetched() {
-        DoggoFetcher.fetchRandomImagesFromURLArray(count: 10)
+        let imageNumber = DBDebugToolkit.customVariable(withName: "imageCount")
+        let num = (imageNumber?.value as? Int) ?? 10
+        DoggoFetcher.fetchRandomImagesFromURLArray(count: num)
     }
     
     func imagesLoaded() {
@@ -51,7 +54,20 @@ class DoggoStyloNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Create parametrizable DBDebugToolkit value.
+        let imageCount = DBCustomVariable(name:"imageCount", value: 8)
+        imageCount.addTarget(self, action: #selector(self.didUpdateImageCount))
+
+        DBDebugToolkit.add(imageCount)
+
     }
+
+    @objc func didUpdateImageCount() {
+        if let cvc = viewControllers.last as? UICollectionViewController {
+            cvc.collectionView?.reloadData()
+        }
+    }
+
 
     // MARK:- Breed Table
     func initBreedTableViewController(breedTableController: DoggoStyloTableController) {
