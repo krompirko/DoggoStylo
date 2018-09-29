@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Nisam videla i nemogu da komentarisem")
         }
         DBDebugToolkit.add(imamCerkuNajLepsuMariju)
-        print("picka")
         return true
     }
 
